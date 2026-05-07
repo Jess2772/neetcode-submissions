@@ -1,0 +1,26 @@
+from collections import defaultdict
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # bucket sort
+        counts = defaultdict(int)
+        buckets = [[] for i in range (len(nums) + 1)]
+        res = []
+
+        for n in nums:
+            counts[n] += 1
+
+        for num in counts:
+            buckets[counts[num]].append(num)
+
+        print(counts)
+        print(buckets)
+        for i in range (len(buckets) - 1, -1, -1):
+            for j in range (len(buckets[i])):
+                if k == 0:
+                    return res
+                res.append(buckets[i][j])
+                k -= 1
+        return res
+
+            
+        
